@@ -1,0 +1,64 @@
+<span ng-show="always">shopping-cart</span>
+<div id="aboveItems">
+<h2>My Shopping Bag</h2>
+<h2  id="totalCost">{{totalCost / 100 | currency}}</h2>
+</div>
+<table class="table table-striped table-hover table-bordered">
+<!-- <span ng-hide="editing" ng-click="editing = true">
+  <tr  ng-show="editing" ng-submit="editing = false">
+  <th>Product</th>
+   <th>Quantity</th>
+   <th>Sub-total</th>
+  </tr>
+  <tr ng-repeat="teaInCart in view.teaBag">
+
+      <td>
+     <h1>{{teaInCart.name}}</h1>
+     <img ng-src="{{teaInCart.imageUrl}}" alt="tea_image"/>
+   <p>Caffine Scale: {{teaInCart.caffeineScale}}</p>
+   <p>Ingredients: {{teaInCart.ingredients}}</p>
+   <p>Rating: {{teaInCart.rating}}</p>
+ </td>
+   <td>
+     <span ng-model='qty'>
+       <div ng-repeat="quantities in teaFactory.all_teas">
+         {{quantity}}
+       </div>
+     </span>
+   </td>
+   <td>
+     {teaInCart.price}
+   </td>
+     <td> -->
+
+</span>
+<tr>
+<th>Product</th>
+ <th>Quantity</th>
+ <th>Sub-total</th>
+</tr>
+<tr ng-repeat="teaInCart in view.tea">
+<!-- <tr> -->
+    <td>
+   <h1>{{teaInCart.name}}</h1>
+   <img ng-src="{{teaInCart.imageUrl}}" alt="tea_image"/>
+ <p>Caffine Scale: {{teaInCart.caffeineScale}}</p>
+ <p>Ingredients: {{teaInCart.ingredients}}</p>
+ <p>Rating: {{teaInCart.rating}}</p>
+</td>
+ <td>
+   <span ng-model='teaQuantity'>
+     <div ng-repeat="quantities in teaFactory.currentItems">
+       hey<input type="text" name="name" value="{{teaQuantity}}">
+     </div>
+   </span>
+ </td>
+ <td>
+   <!-- {{item.qty * item.cost | currency}}   </td> -->
+   <td>
+ <button id="editButton" ng-click="edit(qty)">Edit</button>
+ <button id="removeItem" ng-click="removeItem($index)">Remove</button>
+
+  </td>
+</tr>
+</table>

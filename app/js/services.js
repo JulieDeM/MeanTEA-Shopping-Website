@@ -8,13 +8,13 @@ return {
 //     for(var i = 0; i < teaFactory.currentItems.length; i++) {
 //       sum += (teaFactory.currentItems[i].price);
 //     }
-//     $scope.totalCost = sum;
-//     $scope.totalCost = ($scope.totalCost/100);
+    // $scope.totalCost = sum;
+    // $scope.totalCost = ($scope.totalCost/100);
 //     // console.log($scope.totalCost* tea.qty);
 //   },
-//   cartShopping: function(){
-//       return this.currentItems
-// },
+cartShopping: function(){
+  return this.currentItems
+},
 // addItem: function (tea, qty) {
 //   var cart = currentItems;
 //   // iterate over currentItems and see if tea exists

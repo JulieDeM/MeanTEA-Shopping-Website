@@ -8,10 +8,7 @@ app.controller('meanTeacontroller', function($scope, teaFactory) {
   $scope.totalCost = 0; //doesn't need to be in this scope as the total is not gathered here
 $scope.addItem = function (tea, qty) {
   var cart = teaFactory.currentItems;
-  // iterate over currentItems and see if tea exists
-  // if it does, cart[i].qty += qty ;
-  // else
-  console.log("cart");
+console.log("cart");
   console.log(cart);
   for (var j = 0; j < cart.length; j++) {
     for (var i = 0; i < tea.length; i++) {
@@ -24,12 +21,16 @@ $scope.addItem = function (tea, qty) {
     console.log(cart[j].tea.qty);
     if (tea[i].name == cart[j].name) {
       console.log(tea.name);
-      cart[j].tea.qty += qty
+      cart[j].tea.qty += Number(qty)
     } else {
-      cart[j].tea.qty += qty;
+      cart[j].tea.qty = Number(qty);
       }
     }
 }
+// 
+// check to see if there’s an index of
+// and if there isn’t push into array
+// else update qty
 tea.qty = qty
 teaFactory.currentItems.push(tea);
 teaQuantity = tea.qty
@@ -38,11 +39,11 @@ teaQuantity = tea.qty
     for (var i = 0; i < teaQuantity.length; i++) {
       console.log(teaQuantity[i]);
     if(teaQuantity[i] >1){
-      $scope.numItemsInCart += teaQuantity[i]
+      $scope.numItemsInCart += teaQuantity
     } else{
-      $scope.numItemsInCart = 1
+      $scope.numItemsInCart = teaQuantity
     }
-    return $scope.numItemsInCart = teaQuantity
+    return $scope.numItemsInCart = teaFactory.currentItems[0].qty
     console.log("WHAT IS teaQuantity");
     console.log(teaQuantity);
   }
@@ -182,11 +183,8 @@ $scope.view.availableItems = [ //need this information here
 
 app.controller('shoppingCart', function($scope, teaFactory){
   $scope.view = {}
-  console.log("TEAFACTORY CURRENTITEMS");
-  console.log(teaFactory.currentItems);
-  console.log("*****TEA Quanty****");
-  console.log($scope.teaBag.qty);
-  $scope.view.teaBag = teaFactory.cartShopping()
+  // console.log($scope.currentItems[0].qty);
+  $scope.view.teaInCart = teaFactory.cartShopping()
   console.log('tea: ',teaFactory.currentItems);
   // for (var i = 0; i < teaFactory.currentItems.length; i++) {
   //   teaFactory.currentItems[i]
@@ -210,19 +208,19 @@ function updatePrice() {
   sum += (teaFactory.currentItems[i].price);
   }
 
-    $scope.getTotal = total
-      $scope.getTotal = Math.floor($scope.getTotal);
+$scope.getTotal = total
+$scope.getTotal = Math.floor($scope.getTotal);
       console.log($scope.getTotal);
   }
 
 
   $scope.removeItem = function($index){
-  $scope.view.teaBag.splice($index,1);
+  $scope.view.teaInCart.splice($index,1);
   updatePrice()
 }
 
 $scope.edit = function(index, data) {
   var teas = $scope.view.tea
-    $scope.teas[index] = data;
+    $scope.teaInCart[index] = data;
 };
 })
