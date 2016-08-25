@@ -3,51 +3,51 @@ app.factory('teaFactory', function(){
 return {
   currentItems: [],
 
-  // quantity: function(){
-  //   var quantity = 0;
-  //   $scope.quantities = [1,2,3,4,5,6,7,8,9,10];
-  //   if($scope.quantities.selected){
-  //     quantity += $scope.quantities.selected
-  //   } else{
-  //     quantity = "Your bag is empty!"
-  //   }
-  //   // $scope.name= teaFactory.cart.name
-  //   // $scope.qty = $scope.quantities[0];
-  // },
-  addItem: function (tea, qty) {
-    for (var j = 0; j < teaFactory.currentItems.length; j++) {
-      // teaFactory.currentItems[j]
-      // IF the tea is ALREADY in the array  is being updated
-      if (tea.qty[j] >= 1) {
-        // THEN make the qty property on THAT tea equal to the qty passed to our function
-        tea.qty += qty
-        // ELSE tea.qty = qty; and push into teaFactory.currentItems
-      } else {
-        tea.qty = qty;
-        // teaFactory.currentItems.push(tea);
-      }
-      teaFactory.currentItems.push(tea);
-      updatePrice()
-
-    }
-  },
-  // removeItem: function (tea, qty) {
-  //   for ( j = 0; j < teaFactory.currentItems.length; j++) {
-  //     if (tea[j].qty >= 1) {
-  //       tea[j].qty += qty
-  //     } else {
-  //       tea.qty -= qty.pop(teaFactory.currentItems)
-  //     }
-  //   },
-  cartShopping: function(){
-    // if(this.currentItems >= 1){
-      return this.currentItems
-    // } else{
-    //
-    //   return this.currentItems
-    // }
-  },
-
+//   updatePrice: function () {
+//     var sum = 0;
+//     for(var i = 0; i < teaFactory.currentItems.length; i++) {
+//       sum += (teaFactory.currentItems[i].price);
+//     }
+//     $scope.totalCost = sum;
+//     $scope.totalCost = ($scope.totalCost/100);
+//     // console.log($scope.totalCost* tea.qty);
+//   },
+//   cartShopping: function(){
+//       return this.currentItems
+// },
+// addItem: function (tea, qty) {
+//   var cart = currentItems;
+//   // iterate over currentItems and see if tea exists
+//   // if it does, cart[i].qty += qty ;
+//   // else
+//   for (var j = 0; j < cart.length; j++) {
+//     if (tea.name == cart.name) {
+//       cart[j].tea.qty += qty
+//     } else {
+//       cart[j].tea.qty = 1;
+//       }
+// }
+// tea.qty = qty
+// currentItems.push(tea);
+// teaQuantity = tea.qty
+// },
+//
+// numItemsInCart: function(){
+//   numItemsInCart = 0;
+//     for (var i = 0; i < tea.length; i++) {
+//       console.log(teaQuantity[i]);
+//     if(teaQuantity[i] >1){
+//       numItemsInCart += teaQuantity[i]
+//     } else{
+//     numItemsInCart = 1
+//     }
+//     return numItemsInCart
+//     console.log("WHAT IS teaQuantity");
+//     console.log(teaQuantity);
+//   }
+// //    //this is how it was to track the num in cart
+// //   teaFactory.updatePrice()
+// },
    all_teas: [
     {
       "_id": "55c8ee82152165d244b98300",

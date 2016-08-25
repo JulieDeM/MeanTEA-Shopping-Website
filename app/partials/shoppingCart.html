@@ -37,7 +37,7 @@
    <th>Quantity</th>
    <th>Sub-total</th>
   </tr>
-  <tr ng-repeat="teaInCart in view.teaBag">
+  <tr ng-repeat="teaInCart in view.tea">
   <!-- <tr> -->
       <td>
      <h1>{{teaInCart.name}}</h1>
@@ -47,15 +47,14 @@
    <p>Rating: {{teaInCart.rating}}</p>
  </td>
    <td>
-     <span ng-model='qty'>
-       <div ng-repeat="quantities in teaFactory.all_teas">
-         hey<input type="text" name="name" value="{{quantities}}">
+     <span ng-model='teaQuantity'>
+       <div ng-repeat="quantities in teaFactory.currentItems">
+         hey<input type="text" name="name" value="{{teaQuantity}}">
        </div>
      </span>
    </td>
    <td>
-     <!-- {teaInCart.price} -->
-   </td>
+     {{item.qty * item.cost | currency}}   </td>
      <td>
    <button id="editButton" ng-click="edit(qty)">Edit</button>
    <button id="removeItem" ng-click="removeItem($index)">Remove</button>

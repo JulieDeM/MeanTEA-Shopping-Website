@@ -2,45 +2,57 @@ app.controller('meanTeacontroller', function($scope, teaFactory) {
 
   $scope.view = {};
   $scope.quantities = [1,2,3,4,5,6,7,8,9,10];
+  console.log("scope.quantities");
   console.log($scope.quantities);
   $scope.totalcart = [];
   $scope.totalCost = 0; //doesn't need to be in this scope as the total is not gathered here
-  // $scope.qty = $scope.quantities[0];
-
 $scope.addItem = function (tea, qty) {
-  for (var j = 0; j < teaFactory.currentItems.length; j++) {
-    if (tea.qty >= 1) {
-      tea.qty += qty
+  var cart = teaFactory.currentItems;
+  // iterate over currentItems and see if tea exists
+  // if it does, cart[i].qty += qty ;
+  // else
+  console.log("cart");
+  console.log(cart);
+  for (var j = 0; j < cart.length; j++) {
+    for (var i = 0; i < tea.length; i++) {
+      console.log(tea[i])
+    console.log("TEA.NAME");
+    console.log(tea.name);
+    console.log("CART.NAME");
+    console.log(cart[j].name);
+    console.log("*********cart");
+    console.log(cart[j].tea.qty);
+    if (tea[i].name == cart[j].name) {
+      console.log(tea.name);
+      cart[j].tea.qty += qty
     } else {
-      tea.qty = 1;
+      cart[j].tea.qty += qty;
+      }
     }
-  }
-  teaFactory.currentItems.push(tea);
-  console.log(teaFactory.all_teas);
-  teaQuantity = tea.qty
-  console.log(teaQuantity);
+}
+tea.qty = qty
+teaFactory.currentItems.push(tea);
+teaQuantity = tea.qty
 
   $scope.numItemsInCart = function(){
-    if($scope.tea.FactoryteaFactory.currentItems.tea >1){
-      $scope.numItemsInCart += $scope.tea.FactoryteaFactory.currentItems
+    for (var i = 0; i < teaQuantity.length; i++) {
+      console.log(teaQuantity[i]);
+    if(teaQuantity[i] >1){
+      $scope.numItemsInCart += teaQuantity[i]
     } else{
       $scope.numItemsInCart = 1
     }
+    return $scope.numItemsInCart = teaQuantity
+    console.log("WHAT IS teaQuantity");
+    console.log(teaQuantity);
   }
-  $scope.numItemsInCart = tea.teaFactory.currentItems.length
-   //this is how it was to track the num in cart
-  updatePrice()
+}
+//    //this is how it was to track the num in cart
+//   teaFactory.updatePrice()
+console.log("******teaFactory.currentItems*******");
+console.log(teaFactory.currentItems[0].qty);
 }
 
-$scope.updatePrice = function updatePrice() {
-  var sum = 0;
-  for(var i = 0; i < teaFactory.currentItems.length; i++) {
-    sum += (teaFactory.currentItems[i].price);
-  }
-$scope.totalCost = sum;
-$scope.totalCost = ($scope.totalCost/100);
-    // console.log($scope.totalCost* tea.qty);
-}
 $scope.view.availableItems = [ //need this information here
   {
     "_id": "55c8ee82152165d244b98300",
@@ -167,11 +179,13 @@ $scope.view.availableItems = [ //need this information here
 })
 
 
+
 app.controller('shoppingCart', function($scope, teaFactory){
   $scope.view = {}
   console.log("TEAFACTORY CURRENTITEMS");
   console.log(teaFactory.currentItems);
-  console.log();
+  console.log("*****TEA Quanty****");
+  console.log($scope.teaBag.qty);
   $scope.view.teaBag = teaFactory.cartShopping()
   console.log('tea: ',teaFactory.currentItems);
   // for (var i = 0; i < teaFactory.currentItems.length; i++) {
@@ -208,7 +222,7 @@ function updatePrice() {
 }
 
 $scope.edit = function(index, data) {
-  var teas = $scope.view.teaBag
+  var teas = $scope.view.tea
     $scope.teas[index] = data;
 };
 })
