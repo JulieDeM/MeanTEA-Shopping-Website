@@ -6,11 +6,36 @@ app.controller('meanTeacontroller', function($scope, teaFactory) {
   console.log($scope.quantities);
   $scope.totalcart = [];
   $scope.totalCost = 0; //doesn't need to be in this scope as the total is not gathered here
+
 $scope.addItem = function (tea, qty) {
+
   var cart = teaFactory.currentItems;
-console.log("cart");
-  console.log(cart);
+  //below is what we want to use
+  //i am commenting it out to get the other things to work first
+  //retry and get this to work tomorrow when there is help
+//   //**************************************************
+//   if(cart.length > 0){
+//     cart.push(tea);
+//   } else{
+//   for (var j = 0; j < cart.length; j++) {
+//     console.log("cart[j]");
+//     console.log(cart[j]);
+//     console.log("hey");
+//     if (cart.indexOf(tea) === -1) {
+//         cart.push(tea);
+//         break;
+//     } else {
+//       cart.tea.qty += qty
+//       // break;
+//       }
+//     }
+//   }
+//
+// console.log("cart");
+// console.log(teaFactory.currentItems);
+// //**************************************************
   for (var j = 0; j < cart.length; j++) {
+
     for (var i = 0; i < tea.length; i++) {
       console.log(tea[i])
     console.log("TEA.NAME");
@@ -20,14 +45,14 @@ console.log("cart");
     console.log("*********cart");
     console.log(cart[j].tea.qty);
     if (tea[i].name == cart[j].name) {
-      console.log(tea.name);
+      console.log(tea.name);å
       cart[j].tea.qty += Number(qty)
     } else {
       cart[j].tea.qty = Number(qty);
       }
     }
 }
-// 
+//
 // check to see if there’s an index of
 // and if there isn’t push into array
 // else update qty
@@ -50,8 +75,8 @@ teaQuantity = tea.qty
 }
 //    //this is how it was to track the num in cart
 //   teaFactory.updatePrice()
-console.log("******teaFactory.currentItems*******");
-console.log(teaFactory.currentItems[0].qty);
+// console.log("******teaFactory.currentItems*******");
+// console.log(teaFactory.currentItems[0].qty);
 }
 
 $scope.view.availableItems = [ //need this information here
