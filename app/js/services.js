@@ -8,8 +8,24 @@ return {
 //     for(var i = 0; i < teaFactory.currentItems.length; i++) {
 //       sum += (teaFactory.currentItems[i].price);
 //     }
-    // $scope.totalCost = sum;
-    // $scope.totalCost = ($scope.totalCost/100);
+getTotal: function (){
+  var cart = teaFactory.currentItems;
+  var sum = 0;
+  var qty = 0;
+  // teaCart = teaFactory.currentItems;
+  for (var i = 0; i < cart.length; i++) {
+    sum += (cart[i].price);
+    qty += cart[i].qty
+console.log("here is the cart quantities");
+console.log(qty += cart[i].qty);
+}
+// $scope.getTotal = Math.floor($scope.getTotal
+var total = (sum * qty)
+console.log(total);
+return total
+$scope.totalCost = total;
+$scope.totalCost = ($scope.totalCost/100);
+  },
 //     // console.log($scope.totalCost* tea.qty);
 //   },
 cartShopping: function(){

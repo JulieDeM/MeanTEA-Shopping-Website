@@ -2,7 +2,7 @@
 <div class="panel panel-default">
   <span>
   Search by Category:<select id="category" ng-model="categorySearch">
- <option ng-repeat="category in view.availableItems" ng-model="cats"> {{category.categories[0]}}</option>
+  <option ng-repeat="category in view.availableItems" value={{category.categories[0]}}> {{category.categories[0]}}</option>
  </select>
  <form id="searching">
    Search by name:<input type="text" name="name" value="" ng-model="searchBox">
@@ -20,7 +20,7 @@
     </select>
    </th>
   </tr>
-  <tr ng-repeat="tea in view.availableItems | filter: searchBox | orderBy: priceSearch | orderBy: categorySearch">
+  <tr ng-repeat="tea in view.availableItems | filter: searchBox | orderBy: priceSearch | filter: categorySearch">
    <td><img ng-src="{{tea.imageUrl}}" alt="tea_image"/></td>
    <td><h1>{{tea.name}}</h1>
    <h2>Price: {{tea.price / 100 | currency}}</h2>
@@ -35,10 +35,10 @@
    </td>
    <td>
      Quantity:<select ng-model='qty' >
-       <option ng-repeat="quantity in quantities">{{quantity}}</option>
+       <option ng-repeat="quantity in quantities" value="{{quantity}}">{{quantity}}</option>
      </select>
     <button id="addtoBag" ng-click="addItem(tea, qty)">Add To Bag</button>
-   <div class="caffine-selection">
+    <div class="caffine-selection">
      <h4>Caffine</h4>
      mg/serving: {{tea.caffeineScale}}
      <caffeine-meter caffeinemg="tea.caffeineScale" id="tea._id"></caffeine-meter>
