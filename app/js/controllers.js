@@ -23,21 +23,24 @@ app.controller('meanTeacontroller', function($scope, teaFactory) {
     }
     tea.qty = qty
     teaQuantity = tea.qty
-  };
+    $scope.numItemsInCart;
 
   //number of items in cart(updates button quantity)
   $scope.numItemsInCart = function(){
+    $scope.addItem();
+    $scope.numItemsInCart = "bag is empty";
     for (var i = 0; i < teaQuantity.length; i++) {
       console.log(teaQuantity[i]);
-    // if(teaQuantity[i] >1){
+    if(teaQuantity[i] > 1){
       $scope.numItemsInCart += teaQuantity[i]
-      // } else{
-      //   $scope.numItemsInCart = teaQuantity
-      // }
-      // $scope.numItemsInCart = teaFactory.currentItems[0].qty
+      } else{
+        $scope.numItemsInCart = teaQuantity
+      }
+      $scope.numItemsInCart = teaFactory.currentItems[0].qty
     }
     $scope.numItemsInCart = teaFactory.currentItems[0].qty
   };
+};
 
 
   $scope.view.availableItems = [ //need this information here
@@ -172,6 +175,7 @@ app.controller('meanTeacontroller', function($scope, teaFactory) {
 app.controller('shoppingCart', function($scope, teaFactory){
   $scope.view = {};
   $scope.view.teaInCart = teaFactory.cartShopping();
+  $scope.quantys = [1,2,3,4,5,6,7,8,9,10];
   console.log('tea: ',teaFactory.currentItems);
   console.log('tea qty: ',teaFactory.currentItems[0].qty);
 
@@ -180,8 +184,8 @@ app.controller('shoppingCart', function($scope, teaFactory){
   function updateQty (){
     var cart = teaFactory.currentItems;
     for (var i = 0; i < cart.length; i++) {
-    var qty = cart[i].qty;
-    $scope.qty = cart[i].qty;
+      var qty = cart[i].qty;
+      $scope.qty = cart[i].qty;
     }
   };
 
@@ -190,14 +194,16 @@ app.controller('shoppingCart', function($scope, teaFactory){
     var cart = teaFactory.currentItems;
     $scope.sum = 0;
     for (var i = 0; i < cart.length; i++) {
-      $scope.sum += (Number(cart[i].price) * Number(cart[i].qty));
-      console.log($scope.sum);
+      let price = Number(cart[i].price)
+      let qty = Number(cart[i].qty)
+      $scope.sum += price * qty;
     }
+    console.log($scope.sum);
   }
   getTotal();
 
   function updatePrice () {
-    $scope.sum = getTotal();
+    getTotal();
     for(var i = 0; i < teaFactory.currentItems.length; i++) {
       $scope.sum = (teaFactory.currentItems[i].price);
     }
@@ -208,10 +214,18 @@ app.controller('shoppingCart', function($scope, teaFactory){
     updatePrice($index);
   };
 
-  $scope.edit = function($index, data) {
-    var teas = $scope.view.tea;
-    $scope.teaInCart[$index] = data;
-    updatePrice ();
-    updateQty ();
-  };
-})
+  $scope.toogleme = function (teaInCart){
+    teaInCart.thishides = !teaInCart.thishides
+  }
+
+  $scope.edit = function($index, numbs){
+    var teaqty = $scope.view.teaInCart[0].qty;
+    console.log(teaqty);
+    teaqty = numbs.selected;
+    console.log(teaqty);
+      // $scope.view.teaInCart[$index] = $index;
+      // updatePrice ();
+      // updateQty ();
+      getTotal();
+    };
+  })

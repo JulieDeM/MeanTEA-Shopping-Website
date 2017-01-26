@@ -4,11 +4,10 @@
   <h2 id="totalCost" >Total Price:{{ sum / 100 | currency}}</h2>
 </div>
 <table class="table table-striped table-hover table-bordered">
-  </span>
   <tr>
-  <th>Product</th>
-   <th>Quantity</th>
-   <th>Sub-total</th>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Sub-total</th>
   </tr>
   <tr ng-repeat="teaInCart in view.teaInCart">
     <td>
@@ -17,27 +16,26 @@
      <p>Caffine Scale: {{teaInCart.caffeineScale}}</p>
      <p>Ingredients: {{teaInCart.ingredients}}</p>
      <p>Rating: {{teaInCart.rating}}</p>
-   </td>
-   <td>
-     <span ng-hide="edit" ng-click="editing = true">
+    </td>
+    <td>
        <div ng-repeat="quantities in teaInCart.qty">
-         <p>
+         <p ng-show="toogleme">
            {{quantities}}
          </p>
-      </div>
-     </span>
-     <span ng-model='qty' ng-show="edit">
-       <div ng-repeat="quantities in teaInCart.qty">
-         <input type="text" name="name" value="{{quantities}}">
+         <select ng-model="numbs" ng-hide="toogleme">
+           <option ng-repeat="qnties in quantys" value="{{qnties}}">
+           {{qnties}}
+           </option>
+         </select>
        </div>
-     </span>
    </td>
-   <td>
-     {{teaInCart.qty * (teaInCart.price /100) | currency}}   </td>
-     <td>
-   <button id="editButton" ng-model="editButton" ng-click="edit($qty, $price)">Edit</button>
-   <button id="removeItem" ng-click="removeItem($index, $price)">Remove</button>
-
+    <td>
+     {{teaInCart.qty * (teaInCart.price /100) | currency}}
+    </td>
+    <td>
+     <button id="editButton" type="submit" ng-show="toogleme" ng-click="toogleme = !toogleme; edit($qty)">Edit</button>
+     <button type="button" ng-hide="toogleme" ng-click="edit($index, numbs)">Update</button>
+     <button id="removeItem" ng-click="removeItem($index, $price)">Remove</button>
     </td>
   </tr>
 </table>
